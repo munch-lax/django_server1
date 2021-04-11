@@ -165,12 +165,12 @@ USE_TZ = True
 STATIC_URL='/static/'
 
 MEDIA_URL='/images/'
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATIC_ROOT = os.path.join(BASE_DIR, 'webshop/build')
 
 STATICFILES_DIRS=[
     BASE_DIR / 'static',
-    BASE_DIR/'webshop/build/static'
+    os.path.join(BASE_DIR, 'webshop/build/static')
 
 ]
 
