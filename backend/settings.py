@@ -166,14 +166,14 @@ STATIC_URL='/static/'
 
 MEDIA_URL='/images/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'webshop/build')
+
 
 STATICFILES_DIRS=[
     BASE_DIR / 'static',
-    os.path.join(BASE_DIR, 'webshop/build/static')
+    BASE_DIR/'webshop/build/static'
 
 ]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = 'static/images'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
