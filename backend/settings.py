@@ -103,7 +103,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'webshop/build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -170,10 +170,9 @@ MEDIA_URL='/images/'
 
 STATICFILES_DIRS=[
     BASE_DIR / 'static',
-    BASE_DIR/'webshop/build/static'
-
+    
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_ROOT = 'static/images'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
