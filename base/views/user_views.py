@@ -16,7 +16,9 @@ from rest_framework import status
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self,attrs):
         data=super().validate(attrs)
+        print("this is the user from login",self.user)
         serializer=UserSerializerWithToken(self.user).data
+        print(serializer)
         for k,v in serializer.items():
             data[k]=v
 
@@ -28,9 +30,11 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 
 
-@api_view(['POSt'])
+@api_view(['POST'])
 def register(request):
+    
     data=request.data
+    
     try:
         user=User.objects.create(
             first_name=data['name'],
@@ -38,9 +42,12 @@ def register(request):
             email=data['email'],
             password=make_password(data['password'])
         )
-        serializer=UserSerializerWithToken(user,many=false)
+        print('this is the user',user)
+        serializer=UserSerializerWithToken(user)
+        print(serializer.data)
         return Response(serializer.data)
     except:
+        
         message={'detail':'User with this email already exists'}
         return Response(message,status=status.HTTP_400_BAD_REQUEST)
 
@@ -52,9 +59,35 @@ def getUserProfile(request):
     serializer=UserSerializer(user,many=False)
     return Response(serializer.data)
 
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateUserProfile(request):
+    user=request.user
+    data=request.data
+    serializer=UserSerializerWithToken(user,many=False)
+    user.first_name=data['name']
+    user.username=data['email']
+    user.email=data['email']
+
+
+    if data['password']!='':
+        user.password=make_password(data['password'])
+
+    user.save()
+    return Response(serializer.data)
+
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
 def getUsers(request):
     users=User.objects.all()
     serializer=UserSerializer(users,many=True)
     return Response(serializer.data)
+
+
+
+
+
+
+
+
