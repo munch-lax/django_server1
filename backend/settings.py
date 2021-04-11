@@ -26,7 +26,7 @@ SECRET_KEY = 'm5i8=tmbl&wk82t33aj8ssld97s=zw1b-&bpb+t(o_pb&9uo+n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['webshop-rahul-gurnani.herokuapp.com']
+ALLOWED_HOSTS = ['webshop-rahul-gurnani.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -166,7 +166,7 @@ STATIC_URL='/static/'
 
 MEDIA_URL='/images/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 STATICFILES_DIRS=[
     BASE_DIR / 'static',
